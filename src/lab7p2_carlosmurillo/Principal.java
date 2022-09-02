@@ -533,8 +533,15 @@ public class Principal extends javax.swing.JFrame {
             planta = new Plantas(tipo, nombre, ataque, vida, rango, altura, peso, dureza);
         }
         
-        
-        
+        t_p_nombre.setText("");
+        s_p_ataque.setValue(0);
+        s_p_vida.setValue(0);
+        s_p_magnitud.setValue(0);
+        s_p_altura.setValue(0);
+        s_p_dureza.setValue(0);
+        s_p_peso.setValue(0);
+        t_p_n_proyectil.setText("");
+        t_p_color.setText("");
     }//GEN-LAST:event_b_crear_plantaMouseClicked
 
     private void b_crear_zombieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_crear_zombieMouseClicked
@@ -570,7 +577,17 @@ public class Principal extends javax.swing.JFrame {
             zombie = new Zombies(tipo, nombre, ataque, vida, tamano, edad, enojo, personas);
         }
         
-        
+        t_z_nombre.setText("");
+        s_z_edad.setValue(0);
+        s_z_enojo.setValue(0);
+        s_z_ataque.setValue(0);
+        s_z_tamano.setValue(0);
+        s_z_vida.setValue(0);
+        s_z_experiencia.setValue(0);
+        t_z_c_bandera.setText("");
+        t_z_direccion.setText("");
+        modelopersonas = new DefaultListModel();
+        lista_personas.setModel(modelopersonas);
     }//GEN-LAST:event_b_crear_zombieMouseClicked
 
     private void b_masMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_masMouseClicked

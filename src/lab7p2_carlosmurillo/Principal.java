@@ -5,8 +5,11 @@
  */
 package lab7p2_carlosmurillo;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.logging.Level;
@@ -27,6 +30,8 @@ public class Principal extends javax.swing.JFrame {
     DefaultListModel modelopersonas =  new DefaultListModel();
     DefaultTreeModel modeloarbol;
     
+    private File archivop = null;
+    
     public Principal() {
         initComponents();
         
@@ -43,6 +48,9 @@ public class Principal extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
+        
+        
+        
     }
 
     /**
@@ -605,6 +613,11 @@ public class Principal extends javax.swing.JFrame {
         } catch (FileNotFoundException ex) {
             Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
         }
+        try {
+            escribirArchivoPlanta(planta);
+        } catch (IOException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
         
     }//GEN-LAST:event_b_crear_plantaMouseClicked
 
@@ -672,13 +685,13 @@ public class Principal extends javax.swing.JFrame {
 
     private void ElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ElegirActionPerformed
 
-        String entidad = arbol.convertValueToText(b_alto, rootPaneCheckingEnabled, rootPaneCheckingEnabled, rootPaneCheckingEnabled, ERROR, rootPaneCheckingEnabled);
+        String entidad = "";
         System.out.println(entidad);
     }//GEN-LAST:event_ElegirActionPerformed
 
     public void metodoarbol() throws FileNotFoundException{
-        File archivo = null;
-        archivo = new File("./Plantas.txt");
+        File archivo1 = null;
+        archivo1 = new File("./Plantas.txt");
         File archivo2 = null;
         archivo2 = new File("./Zombies2.txt");
         
@@ -745,9 +758,9 @@ public class Principal extends javax.swing.JFrame {
         
         String magnitud = "";
         
-        if (archivo.exists()) {
+        if (archivo1.exists()) {
             try {
-                sc = new Scanner(archivo);
+                sc = new Scanner(archivo1);
                 sc.useDelimiter("/");
                 
                 while (sc.hasNext()) {
@@ -915,7 +928,7 @@ public class Principal extends javax.swing.JFrame {
         String personas = "";
         
         
-        if (archivo.exists()) {
+        if (archivo2.exists()) {
             try {
                 sc = new Scanner(archivo2);
                 sc.useDelimiter("/");
@@ -1050,6 +1063,30 @@ public class Principal extends javax.swing.JFrame {
         DefaultTreeModel m = (DefaultTreeModel) arbol.getModel();
         m.setRoot(entidades);
     }
+    
+    public void escribirArchivoPlanta(Plantas planta) throws IOException {
+        FileWriter fw = null;
+        BufferedWriter bw = null;
+        try {
+            fw = new FileWriter(archivop, true);
+            bw = new BufferedWriter(fw);
+            Administrador2("./Plantas.txt");
+            Scanner cadena = new Scanner(archivop);
+            String cadena2 = cadena.next();
+            System.out.println(cadena2);
+            
+            bw.write(planta.toString());
+                
+            bw.flush();
+        } catch (Exception ex) {
+        }
+        bw.close();
+        fw.close();
+    }
+    public void Administrador2(String path) {
+        archivop = new File(path);
+    }
+    
     /**
      * @param args the command line arguments
      */

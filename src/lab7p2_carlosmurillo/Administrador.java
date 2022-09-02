@@ -57,34 +57,7 @@ public class Administrador {
     }
 
     //metodos de administracion
-   /* public void escribirArchivoPlanta() throws IOException {
-        FileWriter fw = null;
-        BufferedWriter bw = null;
-        try {
-            fw = new FileWriter(archivo, false);
-            bw = new BufferedWriter(fw);
-                for (Plantas t : listaplantas) {
-                bw.write(t.getCodigo() + ";");
-                bw.write(t.getNombre() + ";");
-                bw.write(t.getedad() + ";");
-                if(t.getHobbies().size() == 0){
-                    bw.write(" ;");
-                }else{
-                    String cadena = "";
-                    ArrayList l = t.getHobbies();
-                    for (int i = 0; i < l.size(); i++) {
-                        cadena += l.get(i)+"/";
-                        
-                    }
-                    bw.write(cadena + ";");
-                }
-            }
-            bw.flush();
-        } catch (Exception ex) {
-        }
-        bw.close();
-        fw.close();
-    }*/
+    
 
     public void cargarArchivoPlantas() {
         Scanner sc = null;

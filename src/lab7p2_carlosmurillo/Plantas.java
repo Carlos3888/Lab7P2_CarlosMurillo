@@ -132,7 +132,15 @@ public class Plantas {
 
     @Override
     public String toString() {
-        return "Planta";
+        String cadena = "";
+        if(tipo.equals("Disparo")){
+            cadena += "/Nombre="+nombre+",Vida="+vida+",Rango="+rango+",Ataque="+ataque+"_Disparo:(Proyectil="+proyectil+";Color="+color+")";
+        }else if(tipo.equals("Defensa")){
+            cadena += "/Nombre="+nombre+",Vida="+vida+",Rango="+rango+",Ataque="+ataque+"_Defensa:(Peso="+peso+";Altura="+altura+";Dureza="+dureza+")";
+        }else{
+            cadena += "/Nombre="+nombre+",Vida="+vida+",Rango="+rango+",Ataque="+ataque+"_Explosiva:(Magnitud="+explsion+")";
+        }
+        return cadena;
     }
     
     

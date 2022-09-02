@@ -5,7 +5,15 @@
  */
 package lab7p2_carlosmurillo;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.ArrayList;
+import java.util.Scanner;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.DefaultListModel;
+import javax.swing.tree.DefaultMutableTreeNode;
+import javax.swing.tree.DefaultTreeModel;
 
 /**
  *
@@ -17,13 +25,12 @@ public class Principal extends javax.swing.JFrame {
      * Creates new form NewJFrame
      */
     DefaultListModel modelopersonas =  new DefaultListModel();
+    DefaultTreeModel modeloarbol;
     
     public Principal() {
         initComponents();
         
-        System.out.println("Lista de plantas: ");
-        Administrador ap = new Administrador("./Plantas.txt");        
-        ap.cargarArchivoPlantas();
+        
         
         System.out.println();
         
@@ -552,6 +559,18 @@ public class Principal extends javax.swing.JFrame {
         s_p_peso.setValue(0);
         t_p_n_proyectil.setText("");
         t_p_color.setText("");
+        
+        
+        System.out.println("Lista de plantas: ");
+        Administrador ap = new Administrador("./Plantas.txt");        
+        ap.cargarArchivoPlantas();
+        
+        try {
+            metodoarbol();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
     }//GEN-LAST:event_b_crear_plantaMouseClicked
 
     private void b_crear_zombieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_crear_zombieMouseClicked
@@ -601,12 +620,244 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_b_crear_zombieMouseClicked
 
     private void b_masMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_masMouseClicked
+        
         String persona = t_z_persona.getText();
         modelopersonas.addElement(persona);
         lista_personas.setModel(modelopersonas);
         t_z_persona.setText("");
     }//GEN-LAST:event_b_masMouseClicked
 
+    public void metodoarbol() throws FileNotFoundException{
+        File archivo = null;
+        archivo = new File("./Plantas.txt");
+        
+        Scanner sc = null;
+        Scanner sc2 = null;
+        Scanner sc3 = null;
+        Scanner sc4 = null;
+        Scanner sc5 = null;
+        
+        DefaultMutableTreeNode entidades = new DefaultMutableTreeNode(
+                        "Entidades");
+        DefaultMutableTreeNode plantas = new DefaultMutableTreeNode(
+                        "PLantas");
+        DefaultMutableTreeNode zombies = new DefaultMutableTreeNode(
+                        "Zombies");
+        
+        DefaultMutableTreeNode disparo = new DefaultMutableTreeNode(
+                        "Disparo");
+        DefaultMutableTreeNode defensa = new DefaultMutableTreeNode(
+                        "Defensa");
+        DefaultMutableTreeNode explosiva = new DefaultMutableTreeNode(
+                        "Explosiva");
+        
+        DefaultMutableTreeNode bajo = new DefaultMutableTreeNode(
+                        "Bajo");
+        DefaultMutableTreeNode medio = new DefaultMutableTreeNode(
+                        "Medio");
+        DefaultMutableTreeNode alto = new DefaultMutableTreeNode(
+                        "Alto");
+        
+        
+        DefaultMutableTreeNode bajo2 = new DefaultMutableTreeNode(
+                        "Bajo");
+        DefaultMutableTreeNode medio2 = new DefaultMutableTreeNode(
+                        "Medio");
+        DefaultMutableTreeNode alto2 = new DefaultMutableTreeNode(
+                        "Alto");
+        
+        
+        DefaultMutableTreeNode bajo3 = new DefaultMutableTreeNode(
+                        "Bajo");
+        DefaultMutableTreeNode medio3 = new DefaultMutableTreeNode(
+                        "Medio");
+        DefaultMutableTreeNode alto3 = new DefaultMutableTreeNode(
+                        "Alto");
+        
+        
+        
+        String rango = "";
+        String nombre = "";
+        String vida = "";
+        String ataque = "";
+        
+        String proyectil = "";
+        String color = "";
+        
+        String peso = "";
+        String altura = "";
+        String dureza = "";
+        
+        String magnitud = "";
+        
+        if (archivo.exists()) {
+            try {
+                sc = new Scanner(archivo);
+                sc.useDelimiter("/");
+                
+                while (sc.hasNext()) {
+                    String tipo = "";
+                    
+                    String planta = sc.next();
+                    System.out.println(planta);
+                    
+                    sc2 = new Scanner(planta);
+                    sc2.useDelimiter("_");
+                    
+                    while (sc2.hasNext()){
+                        String d_planta = sc2.next();
+                        System.out.print("        ");
+                        System.out.println(d_planta);
+                        
+                        sc3 = new Scanner(d_planta);
+                        sc3.useDelimiter(":");
+                        
+                        sc5 = new Scanner(d_planta);
+                        sc5.useDelimiter(",");
+                        
+                        while (sc5.hasNext()){
+                            String cadena = sc5.next();
+                            if(cadena.charAt(0) == 'R'){
+                                rango = cadena;
+                            }else if(cadena.charAt(0) == 'V'){
+                                vida = cadena;
+                            }else if(cadena.charAt(0) == 'A'){
+                                ataque = cadena;
+                            }else if(cadena.charAt(0) == 'N'){
+                                nombre = cadena;
+                            }
+                        }
+                        
+                        
+                        while (sc3.hasNext()){
+                            String cadena = sc3.next();
+                            
+                            
+                            
+                            if (cadena.equals("Disparo")){
+                                System.out.print("                ");
+                                System.out.println(cadena);
+                                sc3.hasNext();
+                                cadena = sc3.next();
+                                cadena = cadena.substring(1, cadena.length()-1);
+                                System.out.print("                        ");
+                                System.out.println(cadena);
+                                sc4 = new Scanner(cadena);
+                                sc4.useDelimiter(";");
+                                while(sc4.hasNext()){
+                                    String cadena2 = sc4.next();
+                                    if(cadena2.charAt(0) == 'P'){
+                                        proyectil = cadena2;
+                                        System.out.println(proyectil);
+                                    }else{
+                                        color = cadena2;
+                                        System.out.println(color);
+                                    }
+                                }
+                                String cadenaplanta = "Planta{"+nombre+","+rango+","+vida+","+ataque+","+proyectil+","+color;
+                                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(
+                                                            cadenaplanta);
+                                
+                                if(rango.equals("Rango=Bajo")){
+                                    bajo.add(nodo);
+                                }else if(rango.equals("Rango=Medio")){
+                                    medio.add(nodo);
+                                }else{
+                                    alto.add(nodo);
+                                }
+                                
+                            }else if (cadena.equals("Defensa")){
+                                System.out.print("                ");
+                                System.out.println(cadena);
+                                sc3.hasNext();
+                                cadena = sc3.next();
+                                cadena = cadena.substring(1, cadena.length()-1);
+                                System.out.print("                        ");
+                                System.out.println(cadena);
+                                sc4 = new Scanner(cadena);
+                                sc4.useDelimiter(";");
+                                while(sc4.hasNext()){
+                                    String cadena2 = sc4.next();
+                                    if(cadena2.charAt(0) == 'P'){
+                                        peso = cadena2;
+                                        System.out.println(peso);
+                                    }else if(cadena2.charAt(0) == 'A'){
+                                        altura = cadena2;
+                                        System.out.println(altura);
+                                    }else{
+                                        dureza = cadena2;
+                                        System.out.println(dureza);
+                                    }
+                                }
+                                String cadenaplanta = "Planta{"+nombre+","+rango+","+vida+","+ataque+","+peso+","+altura+","+dureza;
+                                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(
+                                                            cadena);
+                                
+                                if(rango.equals("Rango=Bajo")){
+                                    bajo2.add(nodo);
+                                }else if(rango.equals("Rango=Medio")){
+                                    medio2.add(nodo);
+                                }else{
+                                    alto2.add(nodo);
+                                }
+                                
+                            }else if (cadena.equals("Explosiva")){
+                                System.out.print("                ");
+                                System.out.println(cadena);
+                                sc3.hasNext();
+                                cadena = sc3.next();
+                                cadena = cadena.substring(1, cadena.length()-1);
+                                System.out.print("                        ");
+                                System.out.println(cadena);
+                                sc4 = new Scanner(cadena);
+                                sc4.useDelimiter(";");
+                                magnitud = cadena;
+                                System.out.println(magnitud);
+                                
+                                String cadenaplanta = "Planta{"+nombre+","+rango+","+vida+","+ataque+","+magnitud;
+                                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(
+                                                            cadenaplanta);
+                                
+                                if(rango.equals("Rango=Bajo")){
+                                    bajo3.add(nodo);
+                                }else if(rango.equals("Rango=Medio")){
+                                    medio3.add(nodo);
+                                }else{
+                                    alto3.add(nodo);
+                                }
+                            }else{
+                                
+                            }
+                        }
+                    }
+                }
+            }catch(Exception e){
+                
+            }
+        }
+        
+        disparo.add(bajo);
+        disparo.add(medio);
+        disparo.add(alto);
+        
+        defensa.add(bajo2);
+        defensa.add(medio2);
+        defensa.add(alto2);
+        
+        explosiva.add(bajo3);
+        explosiva.add(medio3);
+        explosiva.add(alto3);
+        
+        plantas.add(disparo);
+        plantas.add(defensa);
+        plantas.add(explosiva);
+        
+        
+        entidades.add(plantas);
+        entidades.add(zombies);
+        DefaultTreeModel m = (DefaultTreeModel) arbol.getModel();
+        m.setRoot(entidades);
+    }
     /**
      * @param args the command line arguments
      */

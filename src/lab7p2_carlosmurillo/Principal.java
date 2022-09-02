@@ -37,6 +37,12 @@ public class Principal extends javax.swing.JFrame {
         System.out.println("Lista de zombies: ");
         Administrador az = new Administrador("./Zombies2.txt");        
         az.cargarArchivoZombies();
+        
+        try {
+            metodoarbol();
+        } catch (FileNotFoundException ex) {
+            Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+        }
     }
 
     /**
@@ -630,6 +636,8 @@ public class Principal extends javax.swing.JFrame {
     public void metodoarbol() throws FileNotFoundException{
         File archivo = null;
         archivo = new File("./Plantas.txt");
+        File archivo2 = null;
+        archivo2 = new File("./Zombies2.txt");
         
         Scanner sc = null;
         Scanner sc2 = null;
@@ -674,8 +682,12 @@ public class Principal extends javax.swing.JFrame {
         DefaultMutableTreeNode alto3 = new DefaultMutableTreeNode(
                         "Alto");
         
+        DefaultMutableTreeNode clasico = new DefaultMutableTreeNode(
+                        "Clasico");
+        DefaultMutableTreeNode cargado = new DefaultMutableTreeNode(
+                        "Cargado");
         
-        
+        // plantas
         String rango = "";
         String nombre = "";
         String vida = "";
@@ -706,12 +718,6 @@ public class Principal extends javax.swing.JFrame {
                     
                     while (sc2.hasNext()){
                         String d_planta = sc2.next();
-                        System.out.print("        ");
-                        System.out.println(d_planta);
-                        
-                        sc3 = new Scanner(d_planta);
-                        sc3.useDelimiter(":");
-                        
                         sc5 = new Scanner(d_planta);
                         sc5.useDelimiter(",");
                         
@@ -727,6 +733,20 @@ public class Principal extends javax.swing.JFrame {
                                 nombre = cadena;
                             }
                         }
+                    }
+                    
+                    sc2 = new Scanner(planta);
+                    sc2.useDelimiter("_");
+                    
+                    while (sc2.hasNext()){
+                        String d_planta = sc2.next();
+                        System.out.print("        ");
+                        System.out.println(d_planta);
+                        
+                        sc3 = new Scanner(d_planta);
+                        sc3.useDelimiter(":");
+                        
+                        
                         
                         
                         while (sc3.hasNext()){
@@ -791,7 +811,7 @@ public class Principal extends javax.swing.JFrame {
                                 }
                                 String cadenaplanta = "Planta{"+nombre+","+rango+","+vida+","+ataque+","+peso+","+altura+","+dureza;
                                 DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(
-                                                            cadena);
+                                                            cadenaplanta);
                                 
                                 if(rango.equals("Rango=Bajo")){
                                     bajo2.add(nodo);
@@ -834,6 +854,133 @@ public class Principal extends javax.swing.JFrame {
             }catch(Exception e){
                 
             }
+        }//fin plantas
+        
+        
+        
+        
+        //zombies
+        String nombre_z = "";
+        String vida_z = "";
+        String ataque_z = "";
+        
+        String bandera = "";
+        String experiencia = "";
+        
+        String enojo = "";
+        String edad = "";
+        String personas = "";
+        
+        
+        if (archivo.exists()) {
+            try {
+                sc = new Scanner(archivo2);
+                sc.useDelimiter("/");
+                
+                while (sc.hasNext()) {
+                    String tipo = "";
+                    
+                    String planta = sc.next();
+                    System.out.println(planta);
+                    
+                    sc2 = new Scanner(planta);
+                    sc2.useDelimiter("_");
+                    
+                    while (sc2.hasNext()){
+                        String d_planta = sc2.next();
+                        sc5 = new Scanner(d_planta);
+                        sc5.useDelimiter(",");
+                        
+                        while (sc5.hasNext()){
+                            String cadena = sc5.next();
+                            if(cadena.charAt(0) == 'V'){
+                                vida_z = cadena;
+                            }else if(cadena.charAt(0) == 'A'){
+                                ataque_z = cadena;
+                            }else if(cadena.charAt(0) == 'N'){
+                                nombre_z = cadena;
+                            }
+                        }
+                    }
+                    
+                    sc2 = new Scanner(planta);
+                    sc2.useDelimiter("_");
+                    
+                    while (sc2.hasNext()){
+                        String d_planta = sc2.next();
+                        System.out.print("        ");
+                        System.out.println(d_planta);
+                        
+                        sc3 = new Scanner(d_planta);
+                        sc3.useDelimiter(":");
+                        
+                        
+                        
+                        
+                        while (sc3.hasNext()){
+                            String cadena = sc3.next();
+                            
+                            
+                            
+                            if (cadena.equals("Clasico")){
+                                System.out.print("                ");
+                                System.out.println(cadena);
+                                sc3.hasNext();
+                                cadena = sc3.next();
+                                cadena = cadena.substring(1, cadena.length()-1);
+                                System.out.print("                        ");
+                                System.out.println(cadena);
+                                sc4 = new Scanner(cadena);
+                                sc4.useDelimiter(";");
+                                while(sc4.hasNext()){
+                                    String cadena2 = sc4.next();
+                                    if(cadena2.charAt(0) == 'B'){
+                                        bandera = cadena2;
+                                    }else{
+                                        experiencia = cadena2;
+                                    }
+                                }
+                                String cadenazombie = "Zombie{"+nombre_z+","+vida_z+","+ataque_z+","+bandera+","+experiencia;
+                                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(
+                                                            cadenazombie);
+                                
+                                clasico.add(nodo);
+                                
+                            }else if (cadena.equals("Cargado")){
+                                System.out.print("                ");
+                                System.out.println(cadena);
+                                sc3.hasNext();
+                                cadena = sc3.next();
+                                cadena = cadena.substring(1, cadena.length()-1);
+                                System.out.print("                        ");
+                                System.out.println(cadena);
+                                sc4 = new Scanner(cadena);
+                                sc4.useDelimiter(";");
+                                while(sc4.hasNext()){
+                                    String cadena2 = sc4.next();
+                                    if(cadena2.charAt(0) == 'E' && cadena2.charAt(0) == 'n'){
+                                        enojo = cadena2;
+                                    }else if(cadena2.charAt(0) == 'E'){
+                                        edad = cadena2;
+                                    }else{
+                                        personas = cadena2;
+                                    }
+                                }
+                                String cadenazombie = "Zombie{"+nombre_z+vida+","+ataque_z+","+enojo+","+edad+","+personas;
+                                DefaultMutableTreeNode nodo = new DefaultMutableTreeNode(
+                                                            cadenazombie);
+                                
+                                cargado.add(nodo);
+                                
+                            }else{
+                                
+                            }
+                        }
+                    }
+                }
+            }catch(Exception e){
+                
+            }
         }
         
         disparo.add(bajo);
@@ -852,6 +999,8 @@ public class Principal extends javax.swing.JFrame {
         plantas.add(defensa);
         plantas.add(explosiva);
         
+        zombies.add(clasico);
+        zombies.add(cargado);
         
         entidades.add(plantas);
         entidades.add(zombies);

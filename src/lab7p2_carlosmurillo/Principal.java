@@ -57,6 +57,10 @@ public class Principal extends javax.swing.JFrame {
         grupo_rango = new javax.swing.ButtonGroup();
         grupo_tipo_planta = new javax.swing.ButtonGroup();
         grupo_tipo_zombie = new javax.swing.ButtonGroup();
+        popup = new javax.swing.JPopupMenu();
+        Imprimir = new javax.swing.JMenuItem();
+        Eliminar = new javax.swing.JMenuItem();
+        Elegir = new javax.swing.JMenuItem();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel1 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
@@ -123,10 +127,35 @@ public class Principal extends javax.swing.JFrame {
         t_z_direccion = new javax.swing.JTextField();
         b_crear_zombie = new javax.swing.JButton();
 
+        Imprimir.setText("Imprimir");
+        Imprimir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ImprimirActionPerformed(evt);
+            }
+        });
+        popup.add(Imprimir);
+
+        Eliminar.setText("Eliminar");
+        popup.add(Eliminar);
+
+        Elegir.setText("Elegir");
+        Elegir.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ElegirActionPerformed(evt);
+            }
+        });
+        popup.add(Elegir);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         javax.swing.tree.DefaultMutableTreeNode treeNode1 = new javax.swing.tree.DefaultMutableTreeNode("root");
         arbol.setModel(new javax.swing.tree.DefaultTreeModel(treeNode1));
+        arbol.setComponentPopupMenu(popup);
+        arbol.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                arbolMouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(arbol);
 
         batalla.setColumns(20);
@@ -633,6 +662,20 @@ public class Principal extends javax.swing.JFrame {
         t_z_persona.setText("");
     }//GEN-LAST:event_b_masMouseClicked
 
+    private void arbolMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_arbolMouseClicked
+        
+    }//GEN-LAST:event_arbolMouseClicked
+
+    private void ImprimirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ImprimirActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_ImprimirActionPerformed
+
+    private void ElegirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ElegirActionPerformed
+
+        String entidad = arbol.convertValueToText(b_alto, rootPaneCheckingEnabled, rootPaneCheckingEnabled, rootPaneCheckingEnabled, ERROR, rootPaneCheckingEnabled);
+        System.out.println(entidad);
+    }//GEN-LAST:event_ElegirActionPerformed
+
     public void metodoarbol() throws FileNotFoundException{
         File archivo = null;
         archivo = new File("./Plantas.txt");
@@ -981,7 +1024,7 @@ public class Principal extends javax.swing.JFrame {
             }catch(Exception e){
                 
             }
-        }
+        }//fin zombies
         
         disparo.add(bajo);
         disparo.add(medio);
@@ -1044,6 +1087,9 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem Elegir;
+    private javax.swing.JMenuItem Eliminar;
+    private javax.swing.JMenuItem Imprimir;
     private javax.swing.JTree arbol;
     private javax.swing.JRadioButton b_alto;
     private javax.swing.JRadioButton b_bajo;
@@ -1091,6 +1137,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JScrollPane jScrollPane3;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JList<String> lista_personas;
+    private javax.swing.JPopupMenu popup;
     private javax.swing.JSpinner s_p_altura;
     private javax.swing.JSpinner s_p_ataque;
     private javax.swing.JSpinner s_p_dureza;

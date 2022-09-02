@@ -130,7 +130,7 @@ public class Zombies {
 
     @Override
     public String toString() {
-        return "Zombies{" + "tipo=" + tipo + ", nombre=" + nombre + ", ataque=" + ataque + ", vida=" + vida + ", experiencia=" + experiencia + ", bandera=" + bandera + ", direccion=" + direccion + ", tamano=" + tamano + ", edad=" + edad + ", enojo=" + enojo + ", personas=" + personas + '}';
+        return "Zombie";
     }
     
     

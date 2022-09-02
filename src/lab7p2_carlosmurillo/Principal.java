@@ -20,6 +20,16 @@ public class Principal extends javax.swing.JFrame {
     
     public Principal() {
         initComponents();
+        
+        System.out.println("Lista de plantas: ");
+        Administrador ap = new Administrador("./Plantas.txt");        
+        ap.cargarArchivoPlantas();
+        
+        System.out.println();
+        
+        System.out.println("Lista de zombies: ");
+        Administrador az = new Administrador("./Zombies2.txt");        
+        az.cargarArchivoZombies();
     }
 
     /**

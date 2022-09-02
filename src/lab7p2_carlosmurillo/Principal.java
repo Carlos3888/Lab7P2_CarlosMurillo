@@ -5,6 +5,8 @@
  */
 package lab7p2_carlosmurillo;
 
+import javax.swing.DefaultListModel;
+
 /**
  *
  * @author Jafeth
@@ -14,6 +16,8 @@ public class Principal extends javax.swing.JFrame {
     /**
      * Creates new form NewJFrame
      */
+    DefaultListModel modelopersonas =  new DefaultListModel();
+    
     public Principal() {
         initComponents();
     }
@@ -117,7 +121,7 @@ public class Principal extends javax.swing.JFrame {
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 170, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 230, Short.MAX_VALUE)
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 238, Short.MAX_VALUE)
                     .addComponent(b_testear, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(t_planta)
                     .addComponent(t_zombie))
@@ -191,6 +195,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         b_crear_planta.setText("Crear");
+        b_crear_planta.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_crear_plantaMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -241,7 +250,7 @@ public class Principal extends javax.swing.JFrame {
                             .addComponent(jLabel11)
                             .addComponent(jLabel10)
                             .addComponent(s_p_dureza, javax.swing.GroupLayout.DEFAULT_SIZE, 100, Short.MAX_VALUE))))
-                .addContainerGap(7, Short.MAX_VALUE))
+                .addContainerGap(15, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -315,6 +324,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel19.setText("Agregar persona comida");
 
         b_mas.setText("+");
+        b_mas.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_masMouseClicked(evt);
+            }
+        });
 
         jScrollPane3.setViewportView(lista_personas);
 
@@ -336,6 +350,11 @@ public class Principal extends javax.swing.JFrame {
         jLabel22.setText("Direccion imagen");
 
         b_crear_zombie.setText("Crear");
+        b_crear_zombie.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                b_crear_zombieMouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -358,36 +377,35 @@ public class Principal extends javax.swing.JFrame {
                     .addComponent(b_crear_zombie, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(37, 37, 37)
                 .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(jLabel13)
+                            .addGap(110, 110, 110))
+                        .addGroup(jPanel3Layout.createSequentialGroup()
+                            .addComponent(s_z_edad)
+                            .addGap(28, 28, 28)))
                     .addGroup(jPanel3Layout.createSequentialGroup()
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(jLabel13)
-                                    .addGap(110, 110, 110))
-                                .addGroup(jPanel3Layout.createSequentialGroup()
-                                    .addComponent(s_z_edad)
-                                    .addGap(28, 28, 28)))
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jLabel22)
-                                    .addComponent(jLabel21)
-                                    .addComponent(jLabel16)
-                                    .addComponent(s_z_tamano)
-                                    .addComponent(s_z_experiencia)
-                                    .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(t_z_c_bandera))
-                                .addGap(28, 28, 28)))
-                        .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(s_z_enojo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel14)
-                            .addGroup(jPanel3Layout.createSequentialGroup()
-                                .addComponent(t_z_persona, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(b_mas, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
-                    .addComponent(t_z_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(12, Short.MAX_VALUE))
+                                .addComponent(jLabel22)
+                                .addComponent(jLabel21)
+                                .addComponent(jLabel16)
+                                .addComponent(s_z_tamano)
+                                .addComponent(s_z_experiencia)
+                                .addComponent(jLabel18, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(t_z_c_bandera))
+                            .addComponent(t_z_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, 111, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(28, 28, 28)))
+                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(s_z_enojo, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel14)
+                    .addGroup(jPanel3Layout.createSequentialGroup()
+                        .addComponent(t_z_persona, javax.swing.GroupLayout.PREFERRED_SIZE, 91, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(b_mas, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 150, Short.MAX_VALUE)
+                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -440,9 +458,10 @@ public class Principal extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(b_crear_zombie)
-                            .addComponent(t_z_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addComponent(jScrollPane3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(t_z_direccion, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(0, 0, Short.MAX_VALUE))
+                    .addComponent(jScrollPane3))
+                .addContainerGap())
         );
 
         jTabbedPane1.addTab("Zombies", jPanel3);
@@ -474,6 +493,92 @@ public class Principal extends javax.swing.JFrame {
     private void b_clasicoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_b_clasicoActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_b_clasicoActionPerformed
+
+    private void b_crear_plantaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_crear_plantaMouseClicked
+        Plantas planta = new Plantas();
+        
+        String tipo = "";
+        if(b_explosiva.isSelected()){
+            tipo = "Explosiva";
+        }else if(b_disparo.isSelected()){
+            tipo = "Disparo";
+        }else{
+            tipo = "Defensa";
+        }
+        String rango = "";
+        if(b_alto.isSelected()){
+            rango = "Alto";
+        }else if(b_medio.isSelected()){
+            rango = "Medio";
+        }else{
+            rango = "Bajo";
+        }
+        
+        String nombre = t_p_nombre.getText();
+        int ataque = (Integer) s_p_ataque.getValue();
+        int vida = (Integer) s_p_vida.getValue();
+        
+        
+        if(tipo.equals("Explsiva")){
+            int explosion = (Integer) s_p_magnitud.getValue();
+            planta = new Plantas(tipo, nombre, ataque, vida, rango, explosion);
+        }else if(tipo.equals("Disparo")){
+            String proyectil = t_p_n_proyectil.getText();
+            String color = t_p_color.getText();
+            planta = new Plantas(tipo, nombre, ataque, vida, rango, proyectil, color);
+        }else{
+            int altura = (Integer) s_p_altura.getValue();
+            int peso = (Integer) s_p_peso.getValue();
+            int dureza = (Integer) s_p_dureza.getValue();
+            planta = new Plantas(tipo, nombre, ataque, vida, rango, altura, peso, dureza);
+        }
+        
+        
+        
+    }//GEN-LAST:event_b_crear_plantaMouseClicked
+
+    private void b_crear_zombieMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_crear_zombieMouseClicked
+        Zombies zombie = new Zombies();
+        
+        String tipo = "";
+        if(b_clasico.isSelected()){
+            tipo = "Clasico";
+        }else{
+            tipo = "Cargado";
+        }
+        String nombre = t_z_nombre.getText();
+        int ataque = (Integer) s_z_ataque.getValue();
+        int vida = (Integer) s_z_vida.getValue();
+        
+        if(tipo.equals("Clasico")){
+            int experienia = (Integer) s_z_experiencia.getValue();
+            String bandera = t_z_c_bandera.getText();
+            String direccion = t_z_direccion.getText();
+            zombie = new Zombies(tipo, nombre, ataque, vida, experienia, bandera, direccion);
+        }else{
+            int tamano = (Integer) s_z_tamano.getValue();
+            int edad = (Integer) s_z_edad.getValue();
+            int enojo = (Integer) s_z_enojo.getValue();
+            String personas = "{";
+            
+            int num = modelopersonas.size();
+            for (int i = 0; i < num; i++) {
+                String persona = (String) modelopersonas.getElementAt(i);
+                personas += persona+",";
+            }
+            personas += "}";
+            zombie = new Zombies(tipo, nombre, ataque, vida, tamano, edad, enojo, personas);
+        }
+        
+        
+    }//GEN-LAST:event_b_crear_zombieMouseClicked
+
+    private void b_masMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_b_masMouseClicked
+        String persona = t_z_persona.getText();
+        modelopersonas.addElement(persona);
+        lista_personas.setModel(modelopersonas);
+        t_z_persona.setText("");
+    }//GEN-LAST:event_b_masMouseClicked
 
     /**
      * @param args the command line arguments
